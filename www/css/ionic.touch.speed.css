@@ -1,0 +1,63 @@
+.fill {
+    height:100%;
+    color: white;
+}
+
+.fill h3,h4 {
+    color: white;
+}
+
+.ion {
+    width:80px;
+    height:80px;
+    font-size: 80px;
+}
+
+.bolt {
+    animation-duration: 3s;
+    animation-delay: 0s;
+    animation-iteration-count: 999;
+}
+
+.instructions {
+    opacity: .8;
+}
+
+.average {
+    margin-right: 30px;
+}
+
+.tries, .average {
+    display: inline;
+    font-size: 14px;
+}
+
+.faint-label {
+    color: rgba(255,255,255,0.6);
+}
+
+.game-init {
+    background:#2b87d1;
+}
+
+.game-waiting {
+    background:red;
+}
+
+.game-begin {
+    background: green;
+}
+
+.game-result {
+    background:#2b87d1;
+}
+
+.game-error {
+    background:#2b87d1;
+}
+
+.panel {
+    margin-top: 50px;
+    background: white;
+    border-radius: 10px;
+}

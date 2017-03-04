@@ -1,0 +1,138 @@
+<ion-view view-title="我在霹雳手速榜中获得了手速惊人证书，快来和我比比吧！">
+    <ion-content scroll="false" style="text-align: center;">
+        <div class="fill" ng-click="clickedBg()" ng-class="{'game-init': data.gameStatus==0, 'game-waiting': data.gameStatus==1, 'game-begin': data.gameStatus==2, 'game-result': data.gameStatus==3 || data.gameStatus==4, 'game-error': data.gameStatus==9}">
+            <div class="pt20">
+                <div class="initDiv" ng-show="data.gameStatus==0">
+                    <img class="ion animated fadeIn bolt" src="/img/bolt.png">
+                    <h3>
+                        <div>点击开始</div>
+                    </h3>
+                    <h4 class="instructions">当红色背景变成绿色时，尽快点击!</h4>
+                </div>
+                <div class="waitingDiv" ng-show="data.gameStatus==1">
+                    <icon class="ion ion-ios-analytics-outline"></icon>
+                    <h3>
+                        <div>等待画面变成绿色</div>
+                    </h3>
+                    <h4 class="instructions">&nbsp;</h4>
+                </div>
+                <div class="beginDiv" ng-show="data.gameStatus==2">
+                    <icon class="ion ion-ios-game-controller-b-outline"></icon>
+                    <h3>
+                        <div>赶快点击</div>
+                    </h3>
+                    <h4 class="instructions">&nbsp;</h4>
+                </div>
+                <div class="repeatDiv" ng-show="data.gameStatus==9">
+                    <icon class="ion ion-android-sad"></icon>
+                    <h3>
+                        <div>你点的太早了</div>
+                    </h3>
+                    <h4 class="instructions">点击重试</h4>
+                </div>
+                <div class="resultDiv" ng-show="data.gameStatus==3">
+                    <icon class="ion ion-ios-timer-outline"></icon>
+                    <h3>
+                        <div><span ng-bind="data.perTime"></span> 毫秒</div>
+                    </h3>
+                    <h4 class="instructions">
+                        <span>点击继续</span>
+                    </h4>
+                </div>
+                <div class="finalDiv" ng-show="data.gameStatus==4">
+                    <icon class="ion ion-ios-timer-outline"></icon>
+                    <h3>
+                        <div><span ng-bind="data.perTime"></span> 毫秒</div>
+                    </h3>
+                    <h4 class="instructions">
+                        <button class="button button-small button-assertive" ng-click="openModal();">提交成绩</button>
+                        <button class="button button-small button-balanced" ng-click="openRank();">查看排行</button>
+                        <button class="button button-small button-light" ng-click="init();">重新测试</button>
+                    </h4>
+                </div>
+                <div class="mt20">
+                    <div class="average">
+                        <span class="faint-label">平均耗时 |</span> <span ng-bind="data.avgTime"></span> 毫秒
+                    </div>
+                    <div class="tries">
+                        <span class="faint-label">尝试次数 |</span> <span ng-bind="data.round"></span> / <span ng-bind="data.max"></span>
+                    </div>
+                </div>
+                <div ng-show="data.gameStatus==3 || data.gameStatus==4">
+                    <div class="mt20 pt20"><img src="img/qrcode.jpg" width="80px" height="80px"/></div>
+                    <div class="fs12">(长按识别二维码)</div>
+                    <div class="pt10 fs12">关注<b class="text-orange">约测</b>公众号，更多好玩资讯等你发现</div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+<script id="report.html" type="text/ng-template">
+    <ion-modal-view class="game-init text-center pt20">
+        <ion-content scroll="y">
+            <icon class="ion ion-ios-timer-outline"></icon>
+            <div class="fs16"><b ng-bind="data.avgTime"></b> 毫秒</div>
+            <div class="item-input-inset col-60 col-offset-20">
+                <label class="item-input-wrapper" ng-class="{'animated shake err': data.errCode=='err0001'}">
+                    <i class="icon ion-ribbon-a placeholder-icon"></i>
+                    <input type="text" name="data.name" ng-model="data.name" placeholder="名字" maxlength="10">
+                </label>
+            </div>
+            <div class="item-input-inset col-60 col-offset-20">
+                <label class="item-input-wrapper mt20" ng-class="{'animated shake err': data.errCode=='err0002'}">
+                    <i class="icon ion-ios-telephone-outline placeholder-icon"></i>
+                    <input type="tel" name="data.phone" ng-model="data.phone" placeholder="手机号(非必输)" maxlength="11">
+                </label>
+            </div>
+            <div class="col-offset-20 col-60 mt20">
+                <button class="button button-small button-assertive" ng-click="reportResult();">
+                    提交成绩
+                </button>
+                <button class="button button-small" ng-click="closeModal();">
+                    还是算了
+                </button>
+            </div>
+            <div>
+                <div class="mt20 pt20"><img src="img/qrcode.jpg" width="80px" height="80px"/></div>
+                <div class="fs12">(长按识别二维码)</div>
+                <div class="pt10 fs12">关注<b class="text-orange">约测</b>公众号，更多好玩资讯等你发现</div>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+<script id="ranks.html" type="text/ng-template">
+    <ion-modal-view class="game-init text-center pt20">
+        <ion-content scroll="y" class="fs12">
+            <div class="fs16 pt10">霹雳快手排行榜</div>
+            <div class="list list-inset">
+                <div class="item">
+                    <div class="row fs12 text-skyblue">
+                        <div class="col-10"><b>排名</b></div>
+                        <div class="col-25"><b>姓名</b></div>
+                        <div class="col-25"><b>手速</b></div>
+                        <div class="col-40"><b>时间</b></div>
+                    </div>
+                </div>
+                <div class="item" ng-repeat="item in data.ranks">
+                    <div class="row fs12">
+                        <div class="col-10">{{$index + 1}}</div>
+                        <div class="col-25">{{item.name}}</div>
+                        <div class="col-25">{{item.rank}} 毫秒</div>
+                        <div class="col-40">{{item.createTime|date:"MM月dd日"}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-offset-10 col-80 mt20">
+                <button class="button button-block button-assertive" ng-click="closeRank();">
+                    关闭
+                </button>
+            </div>
+            <div>
+                <div class="pt20"><img src="img/qrcode.jpg" width="80px" height="80px"/></div>
+                <div class="fs12">(长按识别二维码)</div>
+                <div class="pt10 fs12">关注<b class="text-orange">约测</b>公众号，更多好玩资讯等你发现</div>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

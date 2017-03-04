@@ -1,0 +1,117 @@
+body {
+    color: white;
+}
+
+h1,h2 {
+    color: white;
+}
+
+.col-offset-5 {
+    margin-left: 5%;
+}
+
+.tarot{
+    border: solid 5px rgba(255,255,255,.3);
+    border-radius: 5px;
+    animation-duration: 3s;
+    animation-delay: 0s;
+    animation-iteration-count: 999;
+    /*-webkit-animation-duration: 2s;*/
+    /*-webkit-animation-delay: 3s;*/
+    /*-webkit-animation-iteration-count: 0;*/
+}
+
+.mt10 {
+    margin-top: 20px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.pt10 {
+    padding-top: 10px;
+}
+
+.pt20 {
+    padding-top: 20px;
+}
+
+.text-dark {
+    color: #222222 !important;
+}
+
+.text-pink {
+    color: pink !important;
+}
+
+.text-orange {
+    color: orange !important;
+}
+
+.text-skyblue {
+    color: skyblue !important;
+}
+
+.loading {
+    display: inline-block;
+    border-radius: 10px;
+    background: rgba(255,255,255,.8) !important;
+}
+
+.qrcode {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    z-index: 100;
+    margin-top: 70px;
+    margin-left: 45px;
+    border: dashed 2px;
+    animation-duration: 3s;
+    animation-delay: 0s;
+    animation-iteration-count: 999;
+}
+
+.fs12 {
+    font-size: 12px;
+}
+
+.fs16 {
+    font-size: 16px;
+}
+
+.card {
+    border-top: 4px solid #11c1f3;
+}
+
+.gender {
+    color: gray;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.female {
+    color: pink !important;
+    font-size: 18px !important;
+}
+
+.male {
+    color: skyblue !important;
+    font-size: 18px !important;
+}
+
+.unknown {
+    color: orangered !important;
+    font-size: 18px !important;
+}
+
+.err {
+    border: solid 1px #ffc19c;
+}
+
+.spinner svg {
+    width: 60px;
+    height: 60px;
+    stroke: #fff;
+    fill: #fff;
+}

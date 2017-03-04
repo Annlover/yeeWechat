@@ -1,0 +1,69 @@
+<ion-view view-title="测测看你适合开什么车?">
+  <audio src="resource/sky.mp3" autoplay loop></audio>
+  <img src="img/back_mid.jpg" width="100%" height="100%"/>
+  <ion-content scroll="y" style="text-align: center;">
+    <div class="fs18 mt20"><b>塔罗占星术</b></div>
+    <div class="fs12">测测你适合什么车?</div>
+    <div ng-hide="data.step==1" class="mt20">
+      <img src="img/qrcode.jpg" class="qrcode animated swing"/>
+      <img src="img/card.jpg" class="animated" ng-class="{'pulse tarot': data.step==0, 'flipOutY': data.step==1}" />
+    </div>
+    <div class="box">
+      <div class="row">
+        <div class="col-90 col-offset-5">
+          <div class="pt10" ng-show="data.step==1"><img src="img/qrcode.jpg" width="60px" height="60px"/></div>
+          <div class="pt10 fs12">关注<b class="text-orange">约测</b>公众号，更多好玩资讯等你发现</div>
+          <div ng-show="data.step==1 && !data.result">
+            <ion-spinner icon="ripple"></ion-spinner>
+            <div class="pt10 fs12"><b>预测中</b></div>
+          </div>
+          <div id="questions" class="card" ng-hide="data.step == 1">
+            <div class="item item-text-wrap fs12 text-left">
+              <div>请选择你的性别</div>
+              <div class="item-input-inset">
+                <b class="gender ion-female" ng-class="{'female animated tada': data.gender==0}" ng-click="switchGender(0)"> 女</b>
+                &emsp;&emsp;
+                <b class="gender ion-male" ng-class="{'male animated tada': data.gender==1}" ng-click="switchGender(1)"> 男</b>
+                &emsp;&emsp;
+                <b class="gender ion-help" ng-class="{'unknown animated tada': data.gender==2}" ng-click="switchGender(2)"> 未知</b>
+              </div>
+            </div>
+            <div class="item item-text-wrap fs12 text-left">
+              <div>请写出你的名字</div>
+              <div class="item-input-inset">
+                <label class="item-input-wrapper" ng-class="{'animated shake err': data.errCode=='err0001'}">
+                  <i class="icon ion-ios-search placeholder-icon"></i>
+                  <input type="text" name="data.username" ng-model="data.username" placeholder="请写下你的名字" maxlength="10">
+                </label>
+              </div>
+            </div>
+            <div class="col-offset-20 col-60">
+              <button class="button button-small button-block button-calm" ng-click="doAction();">
+                开始预测
+              </button>
+            </div>
+          </div>
+
+          <!-- 结果界面 -->
+          <div id="results" class="card" ng-show="data.result">
+            <img ng-src="{{data.result.icon}}" class="animated fadeInDown mt20" width="90%"/>
+            <div class="item item-text-wrap fs12 text-left mt20">
+              <span>与 <b class="fs16 text-orange">{{data.username}} </b>的本命车型竟然是<b class="fs16 text-skyblue"> {{data.result.name}}</b></span>
+              <div class="item-input-inset">
+                <label class="item-input-wrapper fs12 padding">
+                  {{data.result.remark}}
+                </label>
+              </div>
+              <div class="fs12">关注<b class="fs16 text-orange">约测</b>公众号，让朋友们也测测</div>
+            </div>
+            <div class="col-offset-10 col-80">
+              <button class="button button-small button-block button-calm" ng-click="init();">
+                再测一发
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
