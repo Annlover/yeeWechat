@@ -294,12 +294,12 @@ angular.module('starter.controllers', [])
             }
 
             //$scope.data.carNo = value;
-            //$scope.data.province = province;
-            //$scope.data.suffix = enWord + "·" + value;
-            //$scope.data.fullNo = province + enWord + value;
-            $scope.data.province = "测";
-            $scope.data.suffix = "A" + "·" + "88888";
-            $scope.data.fullNo = "测A88888";
+            $scope.data.province = province;
+            $scope.data.suffix = enWord + "·" + value;
+            $scope.data.fullNo = province + enWord + value;
+            //$scope.data.province = "测";
+            //$scope.data.suffix = "A" + "·" + "88888";
+            //$scope.data.fullNo = "测A88888";
             $scope.data.step = 1;
 
             $rootScope.shareTitle = "我的车牌是" + $scope.data.fullNo + "，壕不壕你说了算?";
