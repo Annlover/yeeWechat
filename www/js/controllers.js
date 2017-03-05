@@ -237,5 +237,74 @@ angular.module('starter.controllers', [])
         $scope.init();
     }).controller('PlateNumberCtrl', function ($rootScope, $scope, $timeout) {
 
-        $rootScope.shareTitle = "就问你我新拍到的炫不炫酷?";
+        var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+        var provinces = ['京','津','冀','晋','蒙','辽','吉','黑','沪','苏','浙','皖','闽','赣','鲁','豫','鄂','湘','粤','桂','琼','川','贵','云','渝','藏','陕','甘','青','宁','新'];
+        var enWords = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+        var carNames = ["Cayenne","Ferrari","Porsche"]
+
+        function generateMixed(n) {
+            var res = "";
+            for(var i = 0; i < n ; i ++) {
+                var id = Math.ceil(Math.random()*35);
+                res += chars[id];
+            }
+            return res;
+        }
+
+        function generateProvince() {
+            var province = provinces[Math.ceil(Math.random()*(provinces.length-1))];
+            return province;
+        }
+
+        function generateEnWord(n) {
+            var res = "";
+            for(var i = 0; i < n ; i ++) {
+                var id = Math.ceil(Math.random()*25);
+                res += enWords[id];
+            }
+            return res;
+        }
+
+        $scope.init = function(){
+            $scope.data = {};
+            $scope.data.step = 0;
+            $scope.data.carName = carNames[Math.floor(Math.random()*3)];
+            $rootScope.shareTitle = "你的车牌究竟有多壕?";
+        }
+
+        $scope.reAction = function(){
+            $scope.data.step = 0;
+            $rootScope.shareTitle = "你的车牌究竟有多壕?";
+        }
+
+        $scope.doAction = function(){
+            if(!$scope.data.username){
+                $scope.data.errCode = "err0001";
+                return
+            }
+
+            var province = generateProvince();
+            var enWord = generateEnWord(1);
+
+            //var value = generateMixed(2);
+            var value = ""
+
+            for(var i=0;i<5;i++){
+                value += Math.floor(Math.random()*10);
+            }
+
+            //$scope.data.carNo = value;
+            //$scope.data.province = province;
+            //$scope.data.suffix = enWord + "·" + value;
+            //$scope.data.fullNo = province + enWord + value;
+            $scope.data.province = "测";
+            $scope.data.suffix = "A" + "·" + "88888";
+            $scope.data.fullNo = "测A88888";
+            $scope.data.step = 1;
+
+            $rootScope.shareTitle = "我的车牌是" + $scope.data.fullNo + "，壕不壕你说了算?";
+
+        }
+
+        $scope.init();
     });

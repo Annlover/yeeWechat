@@ -1,8 +1,45 @@
-<ion-view view-title="就问你我新拍到的炫不炫酷?">
-  <img src="img/paizhao.jpg" width="100%" height="240px;"/>
-  <ion-content scroll="false" style="text-align: center;">
-    <div style="margin-top: 180px;font-size:18px;font-weight:bold;letter-spacing: 1.5px;">
-        <span style="font-size: 15px;top: -1px;display: inline-block;position: relative;">沪</span>A·88888
+<ion-view>
+  <ion-content scroll="false" style="background: #2b87d1;text-align: center;border:solid 8px #2b87d1;">
+    <div ng-show="data.step == 0">
+      <div class="pt10 fs12">有的<b class="text-orange">车牌</b>，比车更有价值</div>
+      <div class="mt20 item item-text-wrap fs12 text-left">
+        <div class="item-input-inset">
+          <label class="item-input-wrapper" ng-class="{'animated shake err': data.errCode=='err0001'}">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="text" name="data.username" ng-model="data.username" placeholder="行驶证，需要你的名字" maxlength="10">
+          </label>
+        </div>
+        <button class="button button-small button-block button-calm" ng-click="doAction();">
+          开始拍牌
+        </button>
+        <div class="pt10 fs12">这只是一个<b class="text-orange">游戏</b>，仅供娱乐</div>
+      </div>
+      <div>
+        <div class="mt20 pt20"><img src="img/qrcode.jpg" width="80px" height="80px"/></div>
+        <div class="fs12">(长按识别二维码)</div>
+        <div class="pt10 fs12">关注<b class="text-orange">约测</b>公众号，更多好玩资讯等你发现</div>
+      </div>
+    </div>
+    <div ng-show="data.step == 1" ng-click="reAction();">
+      <img src="img/plateNumber/{{data.carName}}.jpg" class="carImg"/>
+      <img src="img/plateNumber/card.jpg" class="paperImg"/>
+      <div class="plateDiv">
+        <div class="plateText">
+          <span class="plateProvince" ng-bind="data.province"></span>
+          <span ng-bind="data.suffix"></span>
+        </div>
+      </div>
+      <div class="paperDiv">
+        <div>
+          <span ng-bind="data.fullNo"></span>
+        </div>
+        <div style="margin-top: 5px;"><span ng-bind="data.username"></span></div>
+        <div style="margin-top: 28px;"><span>保时捷</span></div>
+      </div>
+      <div style="margin-top: 150px;">
+        <div class="pt10 fs12">仅供娱乐</div>
+        <div class="fs12">关注<b class="text-orange">约测</b>公众号，更多好玩资讯等你发现</div>
+      </div>
     </div>
   </ion-content>
 </ion-view>
