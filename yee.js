@@ -26,6 +26,8 @@ app.use(express.query());
 
 app.post("/api/reportTSRank", api.reportTSRank);
 app.post("/api/listTSRank", api.listTSRank);
+app.post("/api/reportBaikeRank", api.reportBaikeRank);
+app.post("/api/listBaikeRank", api.listBaikeRank);
 
 app.set("port", 3000);
 app.listen(app.get("port"));

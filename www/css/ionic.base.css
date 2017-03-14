@@ -26,7 +26,7 @@ h1,h2 {
 }
 
 .mt20 {
-    margin-top: 20px;
+    margin-top: 20px !important;
 }
 
 .pt10 {

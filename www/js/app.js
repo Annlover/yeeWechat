@@ -32,10 +32,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
+      .state('welcome', {
+        url: '/welcome',
+        templateUrl: 'templates/welcome.html'
+      })
     .state('cartest', {
       url: '/cartest',
-      templateUrl: 'templates/cartest.html',
-      controller: 'CarTestCtrl'
+        templateUrl: 'templates/carSwitch.html',
+        controller: 'CarSwitchCtrl'
     })
     .state('touchSpeed', {
       url: '/touchSpeed',
@@ -46,8 +50,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         url: '/plateNumber',
         templateUrl: 'templates/plateNumber.html',
         controller: 'PlateNumberCtrl'
+      })
+      .state('poetryHead', {
+        url: '/poetryHead',
+        templateUrl: 'templates/poetryHead.html',
+        controller: 'PoetryHeadCtrl'
       });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/cartest');
+  $urlRouterProvider.otherwise('/welcome');
 
 });

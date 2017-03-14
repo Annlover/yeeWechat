@@ -1,0 +1,114 @@
+<ion-view>
+    <ion-content scroll="y" style="text-align: center;" ng-class="{'game-init': data.gameStatus==0, 'game-begin': data.gameStatus==1, 'game-result': data.gameStatus==2}">
+        <div class="fill">
+            <div class="pt20">
+                <div class="initDiv mt20" ng-show="data.gameStatus==0">
+                    <h3 class="animated fadeIn infinite">
+                        <i class="ion ion-clipboard"></i>
+                        <div>装逼大百科</div>
+                    </h3>
+                    <h5 class="instructions">用尽你的洪荒之力,成为这四海八荒第一文豪</h5>
+                    <div><button class="button button-3d button-action button-rounded mt20" ng-click="beginGame()"><b>开始装逼</b></button></div>
+                    <div>
+                        <div class="mt20 pt20"><img src="img/qrcode.jpg" width="80px" height="80px"/></div>
+                        <div class="fs12">(长按识别二维码)</div>
+                        <div class="pt10 fs12">关注<b class="text-orange">装逼日志</b>公众号，好玩资讯等你发现</div>
+                    </div>
+                </div>
+                <div class="beginDiv" ng-show="data.gameStatus==1">
+                    <h4>第 {{data.round}} 题</h4>
+                    <!--<div class="combo">{{data.round}} 连击</div>-->
+                    <div class="card">
+                        <div class="item item-text-wrap text-left">
+                            <div class="item-input-inset">
+                                <label class="item-input-wrapper padding">
+                                    {{data.topic.title}}
+                                </label>
+                            </div>
+                            <div ng-repeat="item in data.topic.answers">
+                                <div class="button button-3d button-block button-rounded mt20" ng-click="commitAnswer($index+1)"><b ng-bind="item"></b></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button button-3d button-primary button-pill" ng-click="init()"><b>重新装逼</b></div>
+                </div>
+                <div class="finalDiv" ng-show="data.gameStatus==2">
+                    <div class="card">
+                        <div class="item item-text-wrap text-left">
+                            <div class="item-input-inset">
+                                <label class="item-input-wrapper padding">
+                                    我在《装逼大百科》中闯过了{{data.round}}关<br>在【{{data.topic.title}}】这一问题马失前蹄.
+                                </label>
+                            </div>
+                            <div class="button button-3d button-small button-block button-action button-rounded"><b>装逼时间:</b>  <b>{{data.totalTime/1000|number:2}} 秒</b></div>
+                            <div class="button button-3d button-small button-block button-highlight button-rounded mt20"><b>平均耗时:</b>  <b>{{data.avgTime/1000|number:2}} 秒</b></div>
+                            <div class="button button-3d button-small button-block button-caution button-rounded mt20"><b>最终评分:</b>  <b ng-bind="data.level">SSS</b></div>
+                        </div>
+                    </div>
+                    <div class="pt20"><img src="img/qrcode.jpg" width="80px" height="80px"/></div>
+                    <div class="fs12">(长按识别二维码)</div>
+                    <div class="pt10 fs12">关注<b class="text-orange">装逼日志</b>公众号，好玩资讯等你发现</div>
+                    <h4 class="instructions">
+                        <button class="button button-3d button-small button-action button-rounded" ng-click="openModal();">提交成绩</button>
+                        <button class="button button-3d button-small button-caution button-rounded" ng-click="init();">重新装逼</button>
+                    </h4>
+                    <div class="card list list-inset">
+                        <div class="item">
+                            <div class="row fs12 text-skyblue">
+                                <div class="col-10"><b>排名</b></div>
+                                <div class="col-25"><b>姓名</b></div>
+                                <div class="col-20"><b>闯关数</b></div>
+                                <div class="col-25"><b>评分</b></div>
+                                <div class="col-20"><b>时间</b></div>
+                            </div>
+                        </div>
+                        <div class="item" ng-repeat="item in data.ranks">
+                            <div class="row fs12">
+                                <div class="col-10">{{$index + 1}}</div>
+                                <div class="col-25">{{item.name}}</div>
+                                <div class="col-20">{{item.rank}}</div>
+                                <div class="col-25">{{item.level}}</div>
+                                <div class="col-20">{{item.createTime|date:"MM.dd"}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+<script id="report.html" type="text/ng-template">
+    <ion-modal-view class="game-init text-center pt20">
+        <ion-content scroll="y">
+            <div class="item item-text-wrap text-left">
+                <div class="item-input-inset">
+                    <label class="item-input-wrapper padding">
+                        我在《装逼大百科》中闯过了{{data.round}}关<br>在【{{data.topic.title}}】这一问题马失前蹄.
+                    </label>
+                </div>
+                <div class="button button-3d button-small button-block button-action button-rounded"><b>装逼时间:</b>  <b>{{data.totalTime/1000|number:2}} 秒</b></div>
+                <div class="button button-3d button-small button-block button-highlight button-rounded mt20"><b>平均耗时:</b>  <b>{{data.avgTime/1000|number:2}} 秒</b></div>
+                <div class="button button-3d button-small button-block button-caution button-rounded mt20"><b>最终评分:</b>  <b ng-bind="data.level">SSS</b></div>
+                <div class="item-input-inset mt20">
+                    <label class="item-input-wrapper" ng-class="{'animated shake err': data.errCode=='err0001'}">
+                        <i class="icon ion-ribbon-a placeholder-icon"></i>
+                        <input type="text" name="data.name" ng-model="data.name" placeholder="名字" maxlength="10">
+                    </label>
+                </div>
+                <div class="col-offset-20 col-60 mt20">
+                    <button class="button button-small button-assertive" ng-click="reportResult();">
+                        提交成绩
+                    </button>
+                    <button class="button button-small" ng-click="closeModal();">
+                        还是算了
+                    </button>
+                </div>
+            </div>
+            <div>
+                <div class="mt20 pt20"><img src="img/qrcode.jpg" width="80px" height="80px"/></div>
+                <div class="fs12">(长按识别二维码)</div>
+                <div class="pt10 fs12">关注<b class="text-orange">装逼日志</b>公众号，好玩资讯等你发现</div>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
