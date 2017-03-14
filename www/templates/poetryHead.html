@@ -55,19 +55,17 @@
                         <div class="item">
                             <div class="row fs12 text-skyblue">
                                 <div class="col-10"><b>排名</b></div>
-                                <div class="col-25"><b>姓名</b></div>
+                                <div class="col-20"><b>姓名</b></div>
                                 <div class="col-20"><b>闯关数</b></div>
-                                <div class="col-25"><b>评分</b></div>
-                                <div class="col-20"><b>时间</b></div>
+                                <div class="col-50"><b>评分</b></div>
                             </div>
                         </div>
                         <div class="item" ng-repeat="item in data.ranks">
                             <div class="row fs12">
                                 <div class="col-10">{{$index + 1}}</div>
-                                <div class="col-25">{{item.name}}</div>
+                                <div class="col-20">{{item.name}}</div>
                                 <div class="col-20">{{item.rank}}</div>
-                                <div class="col-25">{{item.level}}</div>
-                                <div class="col-20">{{item.createTime|date:"MM.dd"}}</div>
+                                <div class="col-50">{{item.level}}</div>
                             </div>
                         </div>
                     </div>
