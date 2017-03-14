@@ -1,7 +1,7 @@
 <ion-view>
     <ion-content scroll="y" style="text-align: center;" ng-class="{'game-init': data.gameStatus==0, 'game-begin': data.gameStatus==1, 'game-result': data.gameStatus==2}">
         <div class="fill">
-            <div class="pt20">
+            <div class="pt10">
                 <div class="initDiv mt20" ng-show="data.gameStatus==0">
                     <h3 class="animated fadeIn infinite">
                         <i class="ion ion-clipboard"></i>
@@ -16,8 +16,7 @@
                     </div>
                 </div>
                 <div class="beginDiv" ng-show="data.gameStatus==1">
-                    <h4>第 {{data.round}} 题</h4>
-                    <!--<div class="combo">{{data.round}} 连击</div>-->
+                    <div>第 {{data.round}} 题</div>
                     <div class="card">
                         <div class="item item-text-wrap text-left">
                             <div class="item-input-inset">
@@ -95,7 +94,7 @@
                         <input type="text" name="data.name" ng-model="data.name" placeholder="名字" maxlength="10">
                     </label>
                 </div>
-                <div class="col-offset-20 col-60 mt20">
+                <div class="mt20">
                     <button class="button button-small button-assertive" ng-click="reportResult();">
                         提交成绩
                     </button>
