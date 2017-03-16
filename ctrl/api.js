@@ -67,6 +67,7 @@ exports.listTSRank = function (req, res) {
         res.json(doc)
     })
 }
+
 exports.reportBaikeRank = function(req, res) {
     var name = req.body.name;
     var rank = req.body.rank;

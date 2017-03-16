@@ -2313,12 +2313,5 @@ angular.module('starter.controllers', [])
             $scope.listRanks();
         };
 
-        $ionicModal.fromTemplateUrl('ranks.html', {
-            scope: $scope,
-            animation: 'slide-in-up'
-        }).then(function(modal) {
-            $scope.modalRanks = modal;
-        });
-
         $scope.init();
     });
