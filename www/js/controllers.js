@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
   .controller('BaseCtrl', function ($rootScope, $scope, $ionicSideMenuDelegate, $location) {
-        $rootScope.shareTitle = "装逼日志"
+        $rootScope.shareTitle = "寻心湖"
+        $rootScope.appName = "寻心湖"
 
     $scope.toggleMenu = function () {
       $ionicSideMenuDelegate.toggleLeft();
